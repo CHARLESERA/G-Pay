@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Pay Amount</title>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    text-align: center;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  img{
+     width:150px;
+     height:150px;
+    border-radius:50%;
+    object-fit:cover;
+  }
+  h2 {
+    margin-bottom: 10px;
+    font-size: 2em;
+    color: #222;
+  }
+  .amount-input {
+    margin-bottom: 20px;
+  }
+  input[type="number"] {
+    padding: 10px;
+    font-size: 1.2em;
+    width: 150px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    text-align: right;
+  }
+  h3 {
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    color: #444;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .pay-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: #007bff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .pay-option:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+  }
+  .pay-option img {
+    height: 40px;
+    width: auto;
+    margin-right: 15px;
+    object-fit: contain;
+  }
+  .pay-option span {
+    font-size: 1.1em;
+    color: white;
+    font-weight: 600;
+  }
+  footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+    <img src="Pigeon.jpg" alt="Round Image" >
+
+<h2>Pay Amount</h2>
+<div class="amount-input">
+  <label for="amount">Enter amount:</label>
+  <input type="number" id="amount" value="99" min="1" />
+</div>
+
+<h3>Click a Button to Pay</h3>
+<div class="buttons">
+  <div class="pay-option" onclick="payWithGPay()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Google_Pay_Logo.png" alt="Google Pay Logo" />
+    <span>Pay with Google Pay</span>
+  </div>
+  <div class="pay-option" onclick="payWithPhonePe()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/PhonePe_logo.png" alt="PhonePe Logo" />
+    <span>Pay with PhonePe</span>
+  </div>
+  <div class="pay-option" onclick="payWithPaytm()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Paytm_logo.png" alt="Paytm Logo" />
+    <span>Pay with Paytm</span>
+  </div>
+</div>
+
+<script>
+  const upiID = "charlespro504-1@oksbi";
+
+  function getAmount() {
+    const amountInput = document.getElementById('amount');
+    return encodeURIComponent(amountInput.value);
+  }
+
+  function payWithGPay() {
+    const amount = getAmount();
+    const url = `upi://pay?pa=${upiID}&pn=Charles%20Pro&tn=Payment&am=${amount}&cu=INR`;
+    window.location.href = url;
+  }
+
+  function payWithPhonePe() {
+    const amount = getAmount();
+    const url = `upi://pay?pa=${upiID}&pn=Charles%20Pro&tn=Payment&am=${amount}&cu=INR`;
+    window.location.href = url;
+  }
+
+  function payWithPaytm() {
+    const amount = getAmount();
+    const url = `paytmmp://pay?pa=${upiID}&pn=Charles%20Pro&tn=Payment&am=${amount}&cu=INR`;
+    window.location.href = url;
+  }
+</script>
+
+<p style="margin-top:30px;">You can change the amount to pay before clicking the payment button.</p>
+
+</body>
+</html>
